@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Жангелды Аубакир — Визитка</title>
+<title>Визитка Жангелды Аубакира</title>
 
 <style>
 * {
@@ -24,7 +24,7 @@ body {
     width: 100%;
     max-width: 500px;
     margin: auto;
-    padding: 30px 20px 40px;
+    padding: 35px 20px 40px;
 }
 
 .logo {
@@ -48,7 +48,6 @@ body {
 .logo-placeholder {
     color: #111;
     font-weight: bold;
-    font-size: 16px;
 }
 
 h1 {
@@ -110,8 +109,8 @@ h1 {
 }
 
 .qr-box p {
-    margin-bottom: 0;
     color: #555;
+    margin-bottom: 0;
 }
 
 #camera {
@@ -166,7 +165,6 @@ h1 {
     left: 20px;
     right: 20px;
     color: white;
-    font-size: 16px;
     background: rgba(0,0,0,0.6);
     padding: 12px;
     border-radius: 10px;
@@ -180,7 +178,6 @@ h1 {
 <div class="card">
 
 ```
-<!-- ЛОГОТИП -->
 <div class="logo">
     <img src="logo.png"
          alt="Логотип"
@@ -191,39 +188,33 @@ h1 {
     </div>
 </div>
 
-<!-- ИМЯ -->
 <h1>Жангелды Аубакир</h1>
 
 <div class="job">
     Менеджер по продажам
 </div>
 
-<!-- ТЕЛЕФОН -->
 <a class="button phone"
-   href="tel:+77000000000">
+   href="tel:+77066770667">
     📞 Позвонить
 </a>
 
-<!-- WHATSAPP -->
 <a class="button whatsapp"
-   href="https://wa.me/77000000000"
+   href="https://wa.me/77066770667"
    target="_blank">
     💬 WhatsApp
 </a>
 
-<!-- INSTAGRAM -->
 <a class="button instagram"
    href="https://instagram.com/"
    target="_blank">
     📷 Instagram
 </a>
 
-<!-- AR -->
 <button class="button ar" onclick="startAR()">
     📱 Открыть AR
 </button>
 
-<!-- QR -->
 <div class="qr-box">
 
     <h2>Моя визитка</h2>
@@ -241,8 +232,6 @@ h1 {
 
 </div>
 
-<!-- AR КАМЕРА -->
-
 <div id="camera">
 
 ```
@@ -253,9 +242,7 @@ h1 {
 <video id="video" autoplay playsinline></video>
 
 <div class="ar-logo">
-    <img src="logo.png"
-         alt="Логотип"
-         onerror="this.style.display='none';">
+    <img src="logo.png" alt="Логотип">
 </div>
 
 <div class="ar-text">
@@ -291,10 +278,7 @@ async function startAR() {
 
     } catch (error) {
 
-        alert(
-            "Не удалось открыть камеру. " +
-            "Разрешите доступ к камере в настройках браузера."
-        );
+        alert("Разрешите доступ к камере в браузере.");
 
     }
 }
@@ -304,11 +288,7 @@ function closeAR() {
     const camera = document.getElementById("camera");
 
     if (stream) {
-
-        stream.getTracks().forEach(track => {
-            track.stop();
-        });
-
+        stream.getTracks().forEach(track => track.stop());
         stream = null;
     }
 
