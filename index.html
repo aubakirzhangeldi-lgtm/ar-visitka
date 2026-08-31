@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Визитка Жангелды Аубакира</title>
+<title>Жангелды Аубакир — Визитка</title>
 
 <style>
 * {
@@ -14,6 +14,7 @@
 
 body {
     margin: 0;
+    padding: 0;
     background: #111;
     color: white;
     font-family: Arial, sans-serif;
@@ -24,12 +25,14 @@ body {
     width: 100%;
     max-width: 500px;
     margin: auto;
-    padding: 35px 20px 40px;
+    padding: 35px 20px 45px;
 }
 
+/* ЛОГОТИП */
+
 .logo {
-    width: 130px;
-    height: 130px;
+    width: 160px;
+    height: 160px;
     margin: 0 auto 25px;
     border-radius: 20px;
     background: white;
@@ -40,15 +43,13 @@ body {
 }
 
 .logo img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-.logo-placeholder {
-    color: #111;
-    font-weight: bold;
-}
+/* ИМЯ */
 
 h1 {
     margin: 10px 0;
@@ -60,6 +61,8 @@ h1 {
     font-size: 18px;
     margin-bottom: 30px;
 }
+
+/* КНОПКИ */
 
 .button {
     display: block;
@@ -94,6 +97,8 @@ h1 {
     color: black;
 }
 
+/* QR */
+
 .qr-box {
     margin-top: 35px;
     padding: 25px 15px;
@@ -102,16 +107,24 @@ h1 {
     border-radius: 20px;
 }
 
+.qr-box h2 {
+    margin-top: 0;
+}
+
 .qr-box img {
+    display: block;
     width: 220px;
     height: 220px;
-    max-width: 100%;
+    margin: 20px auto;
 }
 
 .qr-box p {
-    color: #555;
     margin-bottom: 0;
+    color: #555;
+    font-size: 14px;
 }
+
+/* КАМЕРА */
 
 #camera {
     display: none;
@@ -168,7 +181,9 @@ h1 {
     background: rgba(0,0,0,0.6);
     padding: 12px;
     border-radius: 10px;
+    font-size: 15px;
 }
+
 </style>
 
 </head>
@@ -178,43 +193,45 @@ h1 {
 <div class="card">
 
 ```
+<!-- ЛОГОТИП -->
 <div class="logo">
-    <img src="logo.png"
-         alt="Логотип"
-         onerror="this.style.display='none'; document.getElementById('placeholder').style.display='block';">
-
-    <div id="placeholder" class="logo-placeholder">
-        ЛОГОТИП
-    </div>
+    <img src="logo.png" alt="Логотип">
 </div>
 
+<!-- ИМЯ -->
 <h1>Жангелды Аубакир</h1>
 
+<!-- ДОЛЖНОСТЬ -->
 <div class="job">
     Менеджер по продажам
 </div>
 
+<!-- ТЕЛЕФОН -->
 <a class="button phone"
    href="tel:+77066770667">
     📞 Позвонить
 </a>
 
+<!-- WHATSAPP -->
 <a class="button whatsapp"
    href="https://wa.me/77066770667"
    target="_blank">
     💬 WhatsApp
 </a>
 
+<!-- INSTAGRAM -->
 <a class="button instagram"
    href="https://instagram.com/"
    target="_blank">
     📷 Instagram
 </a>
 
+<!-- AR -->
 <button class="button ar" onclick="startAR()">
     📱 Открыть AR
 </button>
 
+<!-- QR-КОД -->
 <div class="qr-box">
 
     <h2>Моя визитка</h2>
@@ -224,13 +241,15 @@ h1 {
     alt="QR-код">
 
     <p>
-        Отсканируйте QR-код камерой телефона
+        Отсканируйте QR-код камерой другого телефона
     </p>
 
 </div>
 ```
 
 </div>
+
+<!-- AR КАМЕРА -->
 
 <div id="camera">
 
@@ -246,7 +265,7 @@ h1 {
 </div>
 
 <div class="ar-text">
-    Ваш логотип отображается поверх камеры
+    Логотип отображается поверх камеры
 </div>
 ```
 
@@ -278,7 +297,10 @@ async function startAR() {
 
     } catch (error) {
 
-        alert("Разрешите доступ к камере в браузере.");
+        alert(
+            "Не удалось открыть камеру. " +
+            "Разрешите доступ к камере в настройках браузера."
+        );
 
     }
 }
@@ -288,7 +310,11 @@ function closeAR() {
     const camera = document.getElementById("camera");
 
     if (stream) {
-        stream.getTracks().forEach(track => track.stop());
+
+        stream.getTracks().forEach(function(track) {
+            track.stop();
+        });
+
         stream = null;
     }
 
