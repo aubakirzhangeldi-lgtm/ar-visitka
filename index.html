@@ -2,10 +2,13 @@
 
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Жангелды Аубакир — Визитка</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+   content="width=device-width, initial-scale=1.0">
+
+<title>AR Визитка — Жангелды Аубакир</title>
 
 <style>
 
@@ -30,9 +33,7 @@ body {
 }
 
 
-/* =========================
-   ЛОГОТИП
-========================= */
+/* ЛОГОТИП */
 
 .logo {
     width: 180px;
@@ -52,9 +53,7 @@ body {
 }
 
 
-/* =========================
-   ИМЯ
-========================= */
+/* ИМЯ */
 
 h1 {
     margin: 10px 0;
@@ -68,9 +67,7 @@ h1 {
 }
 
 
-/* =========================
-   КНОПКИ
-========================= */
+/* КНОПКИ */
 
 .button {
     display: block;
@@ -90,32 +87,20 @@ h1 {
     cursor: pointer;
 }
 
-
-/* Телефон */
-
 .phone {
     background: #25D366;
     color: white;
 }
-
-
-/* WhatsApp */
 
 .whatsapp {
     background: #128C7E;
     color: white;
 }
 
-
-/* Instagram */
-
 .instagram {
     background: #833AB4;
     color: white;
 }
-
-
-/* AR */
 
 .ar {
     background: white;
@@ -123,13 +108,10 @@ h1 {
 }
 
 
-/* =========================
-   QR-КОД
-========================= */
+/* QR */
 
 .qr-box {
     margin-top: 35px;
-
     padding: 25px 15px;
 
     background: white;
@@ -152,81 +134,58 @@ h1 {
 }
 
 .qr-box p {
-    margin-bottom: 0;
-
     color: #555;
-
     font-size: 14px;
 }
 
 
 /* =========================
-   AR КАМЕРА
+   AR ЭКРАН
 ========================= */
 
-#camera {
+#ar-screen {
+
     display: none;
 
     position: fixed;
 
     inset: 0;
 
-    background: black;
+    background: #000;
 
-    z-index: 1000;
+    z-index: 9999;
 }
 
 
-#camera video {
-    width: 100%;
-    height: 100%;
+/* AR Canvas */
 
-    object-fit: cover;
-}
+#ar-canvas {
 
-
-/* Логотип поверх камеры */
-
-.ar-logo {
     position: absolute;
 
-    width: 180px;
-    height: 180px;
+    inset: 0;
 
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-.ar-logo img {
     width: 100%;
     height: 100%;
-
-    object-fit: contain;
 }
 
 
-/* Кнопка закрытия AR */
+/* Кнопка закрытия */
 
 .close-ar {
-    position: absolute;
 
-    top: 25px;
+    position: fixed;
+
+    top: 20px;
     right: 20px;
 
-    z-index: 1001;
+    z-index: 10001;
 
     padding: 12px 18px;
 
     border: none;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
     background: white;
 
@@ -235,28 +194,57 @@ h1 {
     font-size: 16px;
 
     font-weight: bold;
+
 }
 
 
-/* Текст AR */
+/* Инструкция */
 
-.ar-text {
-    position: absolute;
+.ar-help {
 
-    bottom: 35px;
+    position: fixed;
+
+    bottom: 25px;
 
     left: 20px;
     right: 20px;
 
+    z-index: 10001;
+
+    padding: 14px;
+
+    background: rgba(0,0,0,0.7);
+
+    border-radius: 12px;
+
     color: white;
 
-    background: rgba(0,0,0,0.6);
+    font-size: 15px;
 
-    padding: 12px;
+}
 
-    border-radius: 10px;
+
+/* Сообщение */
+
+#ar-message {
+
+    position: fixed;
+
+    top: 75px;
+
+    left: 20px;
+    right: 20px;
+
+    z-index: 10002;
+
+    padding: 14px;
+
+    background: rgba(0,0,0,0.75);
+
+    border-radius: 12px;
 
     font-size: 15px;
+
 }
 
 </style>
@@ -268,9 +256,7 @@ h1 {
 <div class="card">
 
 ```
-<!-- =========================
-     ЛОГОТИП
-========================== -->
+<!-- ЛОГОТИП -->
 
 <div class="logo">
 
@@ -282,9 +268,7 @@ h1 {
 </div>
 
 
-<!-- =========================
-     ИМЯ
-========================== -->
+<!-- ИМЯ -->
 
 <h1>
     Жангелды Аубакир
@@ -298,9 +282,7 @@ h1 {
 </div>
 
 
-<!-- =========================
-     ТЕЛЕФОН
-========================== -->
+<!-- ТЕЛЕФОН -->
 
 <a
     class="button phone"
@@ -310,9 +292,7 @@ h1 {
 </a>
 
 
-<!-- =========================
-     WHATSAPP
-========================== -->
+<!-- WHATSAPP -->
 
 <a
     class="button whatsapp"
@@ -323,9 +303,7 @@ h1 {
 </a>
 
 
-<!-- =========================
-     INSTAGRAM
-========================== -->
+<!-- INSTAGRAM -->
 
 <a
     class="button instagram"
@@ -336,21 +314,17 @@ h1 {
 </a>
 
 
-<!-- =========================
-     AR
-========================== -->
+<!-- AR -->
 
 <button
     class="button ar"
-    onclick="startAR()"
+    onclick="openAR()"
 >
     📱 Открыть AR
 </button>
 
 
-<!-- =========================
-     QR-КОД
-========================== -->
+<!-- QR -->
 
 <div class="qr-box">
 
@@ -366,7 +340,7 @@ h1 {
 
 
     <p>
-        Отсканируйте QR-код камерой другого телефона
+        Отсканируйте QR-код камерой телефона
     </p>
 
 </div>
@@ -375,14 +349,12 @@ h1 {
 </div>
 
 <!-- =========================
-     AR КАМЕРА
+     AR
 ========================= -->
 
-<div id="camera">
+<div id="ar-screen">
 
 ```
-<!-- Закрыть -->
-
 <button
     class="close-ar"
     onclick="closeAR()"
@@ -391,115 +363,421 @@ h1 {
 </button>
 
 
-<!-- Камера -->
-
-<video
-    id="video"
-    autoplay
-    playsinline
-></video>
+<canvas id="ar-canvas"></canvas>
 
 
-<!-- Логотип -->
-
-<div class="ar-logo">
-
-    <img
-        src="logo.png"
-        alt="Логотип"
-    >
-
+<div id="ar-message">
+    Наведите камеру на пол или стол
 </div>
 
 
-<!-- Текст -->
-
-<div class="ar-text">
-
-    Логотип отображается поверх камеры
-
+<div class="ar-help">
+    Двигайте телефоном, пока не появится поверхность.
+    Нажмите на экран, чтобы разместить логотип.
 </div>
 ```
 
 </div>
 
+<!-- THREE.JS -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js">
+</script>
+
 <script>
 
-let stream = null;
+let xrSession = null;
+
+let renderer = null;
+
+let scene = null;
+
+let camera = null;
+
+let controller = null;
+
+let hitTestSource = null;
+
+let hitTestSourceRequested = false;
+
+let logoMesh = null;
 
 
 /* =========================
-   ОТКРЫТЬ КАМЕРУ
+   ОТКРЫТИЕ AR
 ========================= */
 
-async function startAR() {
+async function openAR() {
 
-    const camera =
-        document.getElementById("camera");
-
-    const video =
-        document.getElementById("video");
-
-
-    try {
-
-        stream =
-            await navigator.mediaDevices.getUserMedia({
-
-                video: {
-                    facingMode: {
-                        ideal: "environment"
-                    }
-                },
-
-                audio: false
-
-            });
-
-
-        video.srcObject = stream;
-
-        camera.style.display = "block";
-
-
-    } catch (error) {
+    if (!navigator.xr) {
 
         alert(
-            "Не удалось открыть камеру. " +
-            "Разрешите доступ к камере в браузере."
+            "Этот телефон или браузер не поддерживает WebXR AR. " +
+            "Попробуйте Android + Google Chrome."
         );
 
+        return;
     }
+
+
+    const supported =
+        await navigator.xr.isSessionSupported("immersive-ar");
+
+
+    if (!supported) {
+
+        alert(
+            "AR не поддерживается этим устройством. " +
+            "Попробуйте Android-телефон с Chrome."
+        );
+
+        return;
+    }
+
+
+    document.getElementById("ar-screen").style.display = "block";
+
+
+    /* THREE */
+
+    scene = new THREE.Scene();
+
+
+    camera = new THREE.PerspectiveCamera(
+        70,
+        window.innerWidth / window.innerHeight,
+        0.01,
+        20
+    );
+
+
+    renderer = new THREE.WebGLRenderer({
+
+        canvas:
+            document.getElementById("ar-canvas"),
+
+        alpha: true,
+
+        antialias: true
+
+    });
+
+
+    renderer.setPixelRatio(
+        window.devicePixelRatio
+    );
+
+
+    renderer.setSize(
+        window.innerWidth,
+        window.innerHeight
+    );
+
+
+    renderer.xr.enabled = true;
+
+
+    /* СВЕТ */
+
+    const light =
+        new THREE.HemisphereLight(
+            0xffffff,
+            0xbbbbff,
+            3
+        );
+
+    scene.add(light);
+
+
+    /* ЛОГОТИП */
+
+    const loader =
+        new THREE.TextureLoader();
+
+
+    loader.load(
+
+        "logo.png",
+
+        function(texture) {
+
+            texture.colorSpace =
+                THREE.SRGBColorSpace;
+
+
+            const geometry =
+                new THREE.PlaneGeometry(
+                    0.4,
+                    0.4
+                );
+
+
+            const material =
+                new THREE.MeshBasicMaterial({
+
+                    map: texture,
+
+                    transparent: true,
+
+                    side: THREE.DoubleSide
+
+                });
+
+
+            logoMesh =
+                new THREE.Mesh(
+                    geometry,
+                    material
+                );
+
+
+            logoMesh.visible = false;
+
+
+            scene.add(logoMesh);
+
+        }
+
+    );
+
+
+    /* КОНТРОЛЛЕР */
+
+    controller =
+        renderer.xr.getController(0);
+
+
+    controller.addEventListener(
+        "select",
+        placeLogo
+    );
+
+
+    scene.add(controller);
+
+
+    /* AR SESSION */
+
+    xrSession =
+        await navigator.xr.requestSession(
+            "immersive-ar",
+            {
+                requiredFeatures: [
+                    "hit-test"
+                ],
+                optionalFeatures: [
+                    "dom-overlay"
+                ],
+                domOverlay: {
+                    root:
+                        document.getElementById(
+                            "ar-screen"
+                        )
+                }
+            }
+        );
+
+
+    renderer.xr.setSession(
+        xrSession
+    );
+
+
+    xrSession.addEventListener(
+        "end",
+        function() {
+
+            xrSession = null;
+
+            hitTestSource = null;
+
+            hitTestSourceRequested = false;
+
+            document.getElementById(
+                "ar-screen"
+            ).style.display = "none";
+
+        }
+    );
+
+
+    renderer.setAnimationLoop(
+        renderAR
+    );
 
 }
 
 
 /* =========================
-   ЗАКРЫТЬ КАМЕРУ
+   РАЗМЕСТИТЬ ЛОГОТИП
 ========================= */
 
-function closeAR() {
+function placeLogo() {
 
-    const camera =
-        document.getElementById("camera");
+    if (!logoMesh) {
+        return;
+    }
 
 
-    if (stream) {
+    if (!logoMesh.visible) {
 
-        stream
-            .getTracks()
-            .forEach(function(track) {
-
-                track.stop();
-
-            });
-
-        stream = null;
+        logoMesh.visible = true;
 
     }
 
 
-    camera.style.display = "none";
+    document.getElementById(
+        "ar-message"
+    ).innerText =
+        "Логотип размещён. Наведите камеру и осмотритесь.";
+
+
+    logoMesh.scale.set(
+        1,
+        1,
+        1
+    );
+
+}
+
+
+/* =========================
+   AR РЕНДЕР
+========================= */
+
+function renderAR(
+    timestamp,
+    frame
+) {
+
+    if (!frame) {
+        return;
+    }
+
+
+    const session =
+        renderer.xr.getSession();
+
+
+    const referenceSpace =
+        renderer.xr.getReferenceSpace();
+
+
+    if (
+        !hitTestSourceRequested
+    ) {
+
+        session
+            .requestReferenceSpace(
+                "viewer"
+            )
+            .then(function(
+                referenceSpace
+            ) {
+
+                session
+                    .requestHitTestSource({
+                        space:
+                            referenceSpace
+                    })
+                    .then(function(
+                        source
+                    ) {
+
+                        hitTestSource =
+                            source;
+
+                    });
+
+            });
+
+
+        session.addEventListener(
+            "end",
+            function() {
+
+                hitTestSourceRequested =
+                    false;
+
+                hitTestSource = null;
+
+            }
+        );
+
+
+        hitTestSourceRequested =
+            true;
+
+    }
+
+
+    if (hitTestSource) {
+
+        const hitTestResults =
+            frame.getHitTestResults(
+                hitTestSource
+            );
+
+
+        if (
+            hitTestResults.length > 0
+        ) {
+
+            const hit =
+                hitTestResults[0];
+
+
+            const pose =
+                hit.getPose(
+                    referenceSpace
+                );
+
+
+            if (
+                pose &&
+                logoMesh &&
+                !logoMesh.visible
+            ) {
+
+                document.getElementById(
+                    "ar-message"
+                ).innerText =
+                    "Поверхность найдена. Нажмите на экран.";
+
+            }
+
+        }
+
+    }
+
+
+    renderer.render(
+        scene,
+        camera
+    );
+
+}
+
+
+/* =========================
+   ЗАКРЫТЬ AR
+========================= */
+
+function closeAR() {
+
+    if (xrSession) {
+
+        xrSession.end();
+
+        xrSession = null;
+
+    }
+
+
+    document.getElementById(
+        "ar-screen"
+    ).style.display = "none";
 
 }
 
