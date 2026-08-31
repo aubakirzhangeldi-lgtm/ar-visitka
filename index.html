@@ -1,128 +1,104 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AR Визитка</title>
+<title>Визитка Жангелды Аубакира</title>
 
-    <script type="module"
-        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-    </script>
+<style>
+body {
+    margin: 0;
+    padding: 30px 20px;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+.card {
+    max-width: 450px;
+    margin: auto;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: white;
-            text-align: center;
-        }
+h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
 
-        .header {
-            padding: 25px 15px 10px;
-        }
+.job {
+    color: #aaa;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
 
-        .header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
+.button {
+    display: block;
+    padding: 16px;
+    margin: 12px 0;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
 
-        .header p {
-            color: #bbb;
-        }
+.phone {
+    background: #25D366;
+    color: white;
+}
 
-        model-viewer {
-            width: 100%;
-            height: 500px;
-            background: #222;
-        }
+.instagram {
+    background: #833AB4;
+    color: white;
+}
 
-        .buttons {
-            padding: 20px;
-        }
+.qr {
+    background: white;
+    padding: 20px;
+    margin-top: 35px;
+    border-radius: 20px;
+    color: black;
+}
 
-        button,
-        a {
-            display: block;
-            width: 100%;
-            max-width: 350px;
-            margin: 10px auto;
-            padding: 16px;
-            border-radius: 12px;
-            border: none;
-            font-size: 17px;
-            text-decoration: none;
-            cursor: pointer;
-        }
+.qr img {
+    width: 220px;
+    height: 220px;
+    max-width: 100%;
+}
+</style>
 
-        .ar-button {
-            background: white;
-            color: black;
-        }
-
-        .phone {
-            background: #25D366;
-            color: white;
-        }
-
-        .instagram {
-            background: #833AB4;
-            color: white;
-        }
-
-        .info {
-            padding: 10px 20px 30px;
-            color: #aaa;
-            font-size: 14px;
-        }
-    </style>
 </head>
 
 <body>
 
-    <div class="header">
-        <h1>Жангелды Аубакир</h1>
-        <p>Менеджер по продажам</p>
-    </div>
+<div class="card">
 
-    <model-viewer
-        src="car.glb"
-        ar
-        ar-modes="webxr scene-viewer quick-look"
-        camera-controls
-        auto-rotate
-        shadow-intensity="1"
-        exposure="1">
+<h1>Жангелды Аубакир</h1>
 
-        <button class="ar-button" slot="ar-button">
-            🚗 ПОСМОТРЕТЬ В AR
-        </button>
+<div class="job">
+Менеджер по продажам
+</div>
 
-    </model-viewer>
+<a class="button phone" href="tel:+77000000000">
+📞 Позвонить
+</a>
 
-    <div class="buttons">
+<a class="button instagram" href="https://instagram.com/" target="_blank">
+📷 Instagram
+</a>
 
-        <a class="phone" href="tel:+77000000000">
-            📞 Позвонить
-        </a>
+<div class="qr">
 
-        <a class="instagram"
-           href="https://instagram.com/"
-           target="_blank">
-            📷 Instagram
-        </a>
+<h2>Моя визитка</h2>
 
-    </div>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Faubakirzhangeldi-lgtm.github.io%2Far-visitka%2F">
 
-    <div class="info">
-        Наведите камеру телефона на QR-код,
-        чтобы открыть AR-визитку.
-    </div>
+<p>Наведите камеру телефона на QR-код</p>
+
+</div>
+
+</div>
 
 </body>
 </html>
