@@ -5,12 +5,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Визитка Жангелды Аубакира</title>
+<title>Жангелды Аубакир — Визитка</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    padding: 30px 20px;
     background: #111;
     color: white;
     font-family: Arial, sans-serif;
@@ -18,13 +21,39 @@ body {
 }
 
 .card {
-    max-width: 450px;
+    width: 100%;
+    max-width: 500px;
     margin: auto;
+    padding: 30px 20px 40px;
+}
+
+.logo {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 25px;
+    border-radius: 20px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.logo-placeholder {
+    color: #111;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 h1 {
+    margin: 10px 0;
     font-size: 30px;
-    margin-bottom: 10px;
 }
 
 .job {
@@ -35,16 +64,24 @@ h1 {
 
 .button {
     display: block;
-    padding: 16px;
+    width: 100%;
+    padding: 17px;
     margin: 12px 0;
-    border-radius: 12px;
+    border-radius: 14px;
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;
+    border: none;
+    cursor: pointer;
 }
 
 .phone {
     background: #25D366;
+    color: white;
+}
+
+.whatsapp {
+    background: #128C7E;
     color: white;
 }
 
@@ -53,18 +90,86 @@ h1 {
     color: white;
 }
 
-.qr {
+.ar {
     background: white;
-    padding: 20px;
-    margin-top: 35px;
-    border-radius: 20px;
     color: black;
 }
 
-.qr img {
+.qr-box {
+    margin-top: 35px;
+    padding: 25px 15px;
+    background: white;
+    color: #111;
+    border-radius: 20px;
+}
+
+.qr-box img {
     width: 220px;
     height: 220px;
     max-width: 100%;
+}
+
+.qr-box p {
+    margin-bottom: 0;
+    color: #555;
+}
+
+#camera {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 1000;
+}
+
+#camera video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ar-logo {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.ar-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.close-ar {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    z-index: 1001;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: white;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ar-text {
+    position: absolute;
+    bottom: 35px;
+    left: 20px;
+    right: 20px;
+    color: white;
+    font-size: 16px;
+    background: rgba(0,0,0,0.6);
+    padding: 12px;
+    border-radius: 10px;
 }
 </style>
 
@@ -74,31 +179,143 @@ h1 {
 
 <div class="card">
 
+```
+<!-- ЛОГОТИП -->
+<div class="logo">
+    <img src="logo.png"
+         alt="Логотип"
+         onerror="this.style.display='none'; document.getElementById('placeholder').style.display='block';">
+
+    <div id="placeholder" class="logo-placeholder">
+        ЛОГОТИП
+    </div>
+</div>
+
+<!-- ИМЯ -->
 <h1>Жангелды Аубакир</h1>
 
 <div class="job">
-Менеджер по продажам
+    Менеджер по продажам
 </div>
 
-<a class="button phone" href="tel:+77000000000">
-📞 Позвонить
+<!-- ТЕЛЕФОН -->
+<a class="button phone"
+   href="tel:+77000000000">
+    📞 Позвонить
 </a>
 
-<a class="button instagram" href="https://instagram.com/" target="_blank">
-📷 Instagram
+<!-- WHATSAPP -->
+<a class="button whatsapp"
+   href="https://wa.me/77000000000"
+   target="_blank">
+    💬 WhatsApp
 </a>
 
-<div class="qr">
+<!-- INSTAGRAM -->
+<a class="button instagram"
+   href="https://instagram.com/"
+   target="_blank">
+    📷 Instagram
+</a>
 
-<h2>Моя визитка</h2>
+<!-- AR -->
+<button class="button ar" onclick="startAR()">
+    📱 Открыть AR
+</button>
 
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Faubakirzhangeldi-lgtm.github.io%2Far-visitka%2F">
+<!-- QR -->
+<div class="qr-box">
 
-<p>Наведите камеру телефона на QR-код</p>
+    <h2>Моя визитка</h2>
+
+    <img
+    src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https%3A%2F%2Faubakirzhangeldi-lgtm.github.io%2Far-visitka%2F"
+    alt="QR-код">
+
+    <p>
+        Отсканируйте QR-код камерой телефона
+    </p>
+
+</div>
+```
 
 </div>
 
+<!-- AR КАМЕРА -->
+
+<div id="camera">
+
+```
+<button class="close-ar" onclick="closeAR()">
+    ✕ Закрыть
+</button>
+
+<video id="video" autoplay playsinline></video>
+
+<div class="ar-logo">
+    <img src="logo.png"
+         alt="Логотип"
+         onerror="this.style.display='none';">
 </div>
+
+<div class="ar-text">
+    Ваш логотип отображается поверх камеры
+</div>
+```
+
+</div>
+
+<script>
+
+let stream = null;
+
+async function startAR() {
+
+    const camera = document.getElementById("camera");
+    const video = document.getElementById("video");
+
+    try {
+
+        stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: {
+                    ideal: "environment"
+                }
+            },
+            audio: false
+        });
+
+        video.srcObject = stream;
+
+        camera.style.display = "block";
+
+    } catch (error) {
+
+        alert(
+            "Не удалось открыть камеру. " +
+            "Разрешите доступ к камере в настройках браузера."
+        );
+
+    }
+}
+
+function closeAR() {
+
+    const camera = document.getElementById("camera");
+
+    if (stream) {
+
+        stream.getTracks().forEach(track => {
+            track.stop();
+        });
+
+        stream = null;
+    }
+
+    camera.style.display = "none";
+}
+
+</script>
 
 </body>
 </html>
